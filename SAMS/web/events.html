@@ -165,7 +165,7 @@ footer {
 <body>
 
 <!-- ---------- NAVBAR ---------- -->
-<nav>
+<nav> 
   <div class="logo">SAMS</div>
   <ul>
     <li><a href="events.html">Events</a></li>
@@ -179,9 +179,61 @@ footer {
   <p>Book your favorite shows and cultural programs with ease!</p>
 </section>
 
-<!-- ---------- EVENTS SECTION ---------- -->
+<!-- ---------- EVENTS SECTION WITH CARDS INSERTED ---------- -->
 <section class="events-grid" id="eventsGrid">
-  <p style="text-align:center;">Loading events...</p>
+
+  <!-- Event 1 -->
+  <div class="event-card">
+    <div class="event-img">🎵 Music Fest</div>
+    <div class="event-content">
+      <h3>Music Fest</h3>
+      <p>A lively musical night featuring bands and solo performances.</p>
+      <div class="event-info">
+        <span>📅 2025-12-12</span>
+      </div>
+    </div>
+    <button class="book-btn">Book Now</button>
+  </div>
+
+  <!-- Event 2 -->
+  <div class="event-card">
+    <div class="event-img">🎭 Drama Night</div>
+    <div class="event-content">
+      <h3>Drama Night</h3>
+      <p>An entertaining drama performance by the college theatre group.</p>
+      <div class="event-info">
+        <span>📅 2025-12-18</span>
+      </div>
+    </div>
+    <button class="book-btn">Book Now</button>
+  </div>
+
+  <!-- Event 3 -->
+  <div class="event-card">
+    <div class="event-img">🎨 Art Expo</div>
+    <div class="event-content">
+      <h3>Art Expo</h3>
+      <p>Exhibition of creative artworks from talented young artists.</p>
+      <div class="event-info">
+        <span>📅 2025-12-22</span>
+      </div>
+    </div>
+    <button class="book-btn">Book Now</button>
+  </div>
+
+  <!-- Event 4 -->
+  <div class="event-card">
+    <div class="event-img">🎤 Stand-up Comedy</div>
+    <div class="event-content">
+      <h3>Stand-up Comedy Show</h3>
+      <p>A fun-filled comedy night with stand-up acts.</p>
+      <div class="event-info">
+        <span>📅 2025-12-28</span>
+      </div>
+    </div>
+    <button class="book-btn">Book Now</button>
+  </div>
+
 </section>
 
 <!-- ---------- FOOTER ---------- -->
@@ -189,51 +241,6 @@ footer {
   © 2025 Team 5G | Student Auditorium Management Software
 </footer>
 
-<!-- ---------- SCRIPT ---------- -->
-<script>
-async function loadEvents() {
-  const grid = document.getElementById("eventsGrid");
-  grid.innerHTML = `<p style="text-align:center;">Loading events...</p>`;
-
-  try {
-    const res = await fetch("ManagerServlet");
-    const data = await res.json();
-
-    if (res.ok && Array.isArray(data) && data.length > 0) {
-      grid.innerHTML = "";
-      data.forEach(ev => {
-        const card = document.createElement("div");
-        card.className = "event-card";
-        card.innerHTML = `
-          <div class="event-img">🎫 ${ev.title}</div>
-          <div class="event-content">
-            <h3>${ev.title}</h3>
-            <p>${ev.description}</p>
-            <div class="event-info">
-              <span>📅 ${ev.date}</span>
-            </div>
-          </div>
-          <button class="book-btn">Book Now</button>
-        `;
-
-        // When clicked, go to seat_selection.html
-        card.querySelector(".book-btn").addEventListener("click", () => {
-  alert("Please log in first to continue with your booking!");
-});
-
-        grid.appendChild(card);
-      });
-    } else {
-      grid.innerHTML = `<p style="text-align:center;">No events available yet.</p>`;
-    }
-  } catch (err) {
-    console.error(err);
-    grid.innerHTML = `<p style="text-align:center;">⚠️ Unable to load events!</p>`;
-  }
-}
-
-loadEvents();
-</script>
-
 </body>
 </html>
+
